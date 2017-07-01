@@ -1,57 +1,52 @@
 
-/**
- * Module dependencies
- */
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
-var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
-  http = require('http'),
-  path = require('path');
+var app = express();
 
+var routes = require('./routes/index');
+var api = require('./routes/api');
 
-var app = module.exports = express();
-
-/**
-* Configuration
-*/
-
-// all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(app.router);
-
-// development only
-if (app.get('env') === 'development') {
-   app.use(express.errorHandler());
-};
-
-// production only
-if (app.get('env') === 'production') {
-  // TODO
-}; 
-
 
 
 // Routes
-app.get('/', routes.index);
-app.get('/partial/:name', routes.partial);
+app.use('/', routes);
 
 // JSON API
-app.get('/api/name', api.name);
+app.use('/api', api);
 
-// redirect all others to the index (HTML5 history)
-app.get('*', routes.index);
-
-/**
-* Start Server
-*/
-
-http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+app.get('*', (req, res) => {
+    res.render('index');
 });
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler
+app.use((err, req, res, next)  =>{
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;

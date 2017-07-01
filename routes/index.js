@@ -1,15 +1,14 @@
+var express =  require('express');
+var router = express.Router();
 
-/*
- * GET home page.
- */
+router.get('/', (req, res) => {
+    res.render('index');
+});
 
-module.exports = {
-    index: function(req, res){
-      res.render('index');
-    },
+router.get('/partial/:name', (req, res) => {
+    var name = req.params.name;
+    res.render('partials/partial' + name);
+});
 
-    partial: function (req, res) {
-      var name = req.params.name;
-      res.render('partials/partial' + name);
-    }
-}
+
+module.exports = router;
