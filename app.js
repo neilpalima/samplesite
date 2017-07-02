@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var routes = require('./routes/index');
-var api = require('./routes/api');
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -23,13 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', routes);
-
-// JSON API
-app.use('/api', api);
-
-app.get('*', (req, res) => {
-    res.render('index');
-});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
