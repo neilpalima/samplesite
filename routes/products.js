@@ -33,7 +33,6 @@ router.get('/getAll', (req, res) => {
 
 router.get('/get*', (req, res) => {
     var name = decodeURIComponent(req.query.name) || decodeURIComponent(req.params.name);
-    console.log(name)
     Products.findOne({
         where: {
             name: name,
