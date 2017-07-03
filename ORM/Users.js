@@ -3,7 +3,7 @@ var sequelize = require('./helpers').connect();
 
 const Users = sequelize.define('users', {
     username: { type: Sequelize.STRING, primaryKey: true },
-    password: Sequelize.TEXT,
+    password: Sequelize.STRING,
     email: Sequelize.STRING,
     address: Sequelize.STRING,
     type: Sequelize.ENUM('ADMIN', 'USER')

@@ -10,7 +10,7 @@ router.post('/signin', (req, res) => {
             username: userCredentials.username,
             password: userCredentials.password
         }
-    }).then(user => {
+    }).then((user) => {
         if (user) {
             res.redirect('/products');
         }
@@ -18,11 +18,10 @@ router.post('/signin', (req, res) => {
             res.locals.error = 'Invalid username/password!';
             res.redirect('/login');
         }
-    })
-
+    });
 });
 
-router.post('/create', (req, res) => {
+router.post('/add', (req, res) => {
     var userInfo = req.body;
     Users.findOrCreate({
         where: {
@@ -36,7 +35,32 @@ router.post('/create', (req, res) => {
         }
     }).spread((user, created) => {
         res.render('user_list', {success: created});
+    }).catch((err) => {
+        res.status(500).json({ error: err });
     });
 });
+
+router.get('/getAll', (req, res) => {
+    Users.findAll().then(users => {
+        res.json(users);
+    });
+});
+
+router.get('/get/:username', (req, res) => {
+    var username = req.params.username;
+    Users.findOne({
+        where: {
+            username: username,
+        }
+    }).then((user) => {
+        if (user) {
+            res.json(user);
+        }
+        else {
+            res.status(404).json({ error: 'Not found' });
+        }
+    });
+});
+
 
 module.exports = router;
