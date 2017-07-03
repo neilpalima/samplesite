@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 var sequelize = require('./helpers').connect();
 
 const Products = sequelize.define('Products', {
-    id: { type: Sequelize.STRING, primaryKey: true, autoIncrement: true },
+    id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
     name: Sequelize.STRING,
     price: Sequelize.DOUBLE,
     description: Sequelize.TEXT,
