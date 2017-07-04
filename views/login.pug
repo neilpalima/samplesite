@@ -5,9 +5,9 @@ append styles
 block body
     .container
         form.form-signin(method='POST' name='login' action='/users/signin')
-            h2.form-signin-heading Please sign in #{error}
-            if 1
-                +alert-success("<strong>Well done!</strong> You successfully read this important alert message.")
+            h2.form-signin-heading Please sign in
+            if error
+                +alert-danger(error)
             label.sr-only(for='inputEmail') Email address
             input#inputEmail.form-control(type='input', placeholder='Username', required='', autofocus='', name='username')
             label.sr-only(for='inputPassword') Password

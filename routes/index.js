@@ -5,6 +5,7 @@ var users = require('./users');
 var products = require('./products');
 var orders = require('./orders');
 var purchases = require('./purchases');
+var admin = require('./admin');
 var api = require('./api');
 
 router.get('/', (req, res) => {
@@ -24,6 +25,7 @@ router.use('/users', users);
 router.use('/products', products);
 router.use('/orders', orders);
 router.use('/purchases', purchases);
+router.use('/admin', admin);
 router.use('/api', api);
 
 // router.get('*', (req, res) => {

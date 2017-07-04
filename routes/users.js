@@ -12,11 +12,10 @@ router.post('/signin', (req, res) => {
         }
     }).then((user) => {
         if (user) {
-            res.redirect('/products');
+            res.redirect('/admin/dashboard');
         }
         else {
-            res.locals.error = 'Invalid username/password!';
-            res.redirect('/login');
+            res.render('login', {error: 'Invalid username/password!'});
         }
     });
 });
@@ -42,7 +41,7 @@ router.post('/add', (req, res) => {
 
 router.get('/getAll', (req, res) => {
     Users.findAll().then(users => {
-        res.json(users);
+        res.json({users: users});
     });
 });
 
@@ -59,6 +58,12 @@ router.get('/get/:username', (req, res) => {
         else {
             res.status(404).json({ error: 'Not found' });
         }
+    });
+});
+
+router.get('/countAll', (req, res) => {
+    Users.findAndCountAll().then(users => {
+        res.json({count: users.count});
     });
 });
 

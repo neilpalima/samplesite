@@ -8,23 +8,9 @@ router.get('/', (req, res) => {
     res.render('orders');
 });
 
-// router.post('/add', (req, res) => {
-//     var productInfo = req.body;
-//     Products.findOrCreate({
-//         where: {
-//             name: productInfo.name
-//         },
-//         defaults: {
-//             price: productInfo.price,
-//             description: productInfo.description,
-//             sku: productInfo.sku
-//         }
-//     }).spread((product, created) => {
-//         res.render('product_list', {success: created});
-//     }).catch((err) => {
-//         res.status(500).json({ error: err });
-//     });
-// });
+router.post('/add', (req, res) => {
+    //TODO
+});
 
 router.get('/getAll', (req, res) => {
     Orders.findAll({
@@ -58,6 +44,12 @@ router.get('/get/:orderId', (req, res) => {
         else {
             res.status(404).json({ error: 'Not found' });
         }
+    });
+});
+
+router.get('/countAll', (req, res) => {
+    Orders.findAndCountAll().then(orders => {
+        res.json({count: orders.count});
     });
 });
 

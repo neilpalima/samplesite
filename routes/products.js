@@ -4,7 +4,9 @@ var router = express.Router();
 var Products = require('../ORM/Products');
 
 router.get('/', (req, res) => {
-    res.render('products');
+    Products.findAll().then((products) => {
+        res.render('products');
+    });
 });
 
 router.post('/add', (req, res) => {
@@ -27,7 +29,7 @@ router.post('/add', (req, res) => {
 
 router.get('/getAll', (req, res) => {
     Products.findAll().then((products) => {
-        res.json(products);
+        res.json({products: products});
     });
 });
 

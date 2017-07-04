@@ -33,11 +33,11 @@ block body
                             | Products
                             span.sr-only (current)
                     li
-                        a(href='#') Reports
-                    li
-                        a(href='#') Analytics
-                    li
-                        a(href='#') Export
+                        a(href='#') Soon
+            //        li
+            //            a(href='#') Analytics
+            //        li
+            //            a(href='#') Export
             .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
                 h2.sub-header List of products
                 .table-responsive
@@ -46,19 +46,14 @@ block body
                             tr
                                 th #
                                 th Name
-                                th Price
+                                th Price(in php)
                                 th Description
                         tbody
-                            tr
-                                td 1,001
-                                td Lorem
-                                td ipsum
-                                td dolor
-                            tr
-                                td 1,002
-                                td {{name}}
-                                td consectetur
-                                td adipiscing
+                            tr(ng-repeat="itr in products")
+                                td {{$index + 1}}
+                                td {{itr.name}}
+                                td {{itr.price}}
+                                td {{itr.description}}
 
     script(src='js/lib/angular/angular.js')
     script(src='js/lib/angular/angular-route.js')

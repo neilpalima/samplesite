@@ -1,0 +1,126 @@
+extends ../layout
+append styles
+    // Custom styles for this template
+    link(href='../css/dashboard.css', rel='stylesheet')
+block body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+        .container-fluid
+            .navbar-header
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='#') MyShop
+            //#navbar.navbar-collapse.collapse
+            //    ul.nav.navbar-nav.navbar-right
+            //       li
+            //            a(href='#') Dashboard
+            //        li
+            //            a(href='#') Settings
+            //        li
+            //            a(href='#') Profile
+            //        li
+            //            a(href='#') Help
+            //    form.navbar-form.navbar-right
+            //        input.form-control(type='text', placeholder='Search...')
+    .container-fluid(ng-controller='AppCtrl as ctrl')
+        .row
+            .col-sm-3.col-md-2.sidebar
+                ul.nav.nav-sidebar
+                    li.active(ng-show='showOverview')
+                        a(href='#')
+                            | Overview
+                            span.sr-only (current)
+                    li(ng-show='!showOverview')
+                        a(href='#' ng-click='ctrl.showOverview()') Overview
+
+                    li.active(ng-show='showProducts')
+                        a(href='#')
+                            | Products
+                            span.sr-only (current)
+                    li(ng-show='!showProducts')
+                        a(href='#' ng-click='ctrl.showProducts()') Products
+
+                    li.active(ng-show='showUsers')
+                        a(href='#')
+                            | Users
+                            span.sr-only (current)
+                    li(ng-show='!showUsers')
+                        a(href='#' ng-click='ctrl.showUsers()') Users
+
+                    li.active(ng-show='showOrders')
+                        a(href='#')
+                            | Users
+                            span.sr-only (current)
+                    li(ng-show='!showOrders')
+                        a(href='#' ng-click='ctrl.showOrders()') Orders
+
+            .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main(ng-show='showOverview')
+                h2.sub-header Overview (TODO statistical content)
+
+
+            .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main(ng-show='showProducts')
+                h2.sub-header List of Products
+                .table-responsive
+                    table.table.table-striped
+                        thead
+                            tr
+                                th #
+                                th Name
+                                th Price(in php)
+                                th Description
+                        tbody(ng-init='ctrl.getProducts()')
+                            tr(ng-repeat="itr in products")
+                                td {{$index + 1}}
+                                td {{itr.name}}
+                                td {{itr.price}}
+                                td {{itr.description}}
+
+            .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main(ng-show='showUsers')
+                h2.sub-header List of Users
+                .table-responsive
+                    table.table.table-striped
+                        thead
+                            tr
+                                th #
+                                th Username
+                                th Email
+                                th Address
+                                th Type
+                        tbody(ng-init='ctrl.getUsers()')
+                            tr(ng-repeat="itr in users")
+                                td {{$index + 1}}
+                                td {{itr.username}}
+                                td {{itr.email}}
+                                td {{itr.address}}
+                                td {{itr.type}}
+
+            .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main(ng-show='showOrders')
+                h2.sub-header List of Orders (TODO correct content)
+                .table-responsive
+                    table.table.table-striped
+                        thead
+                            tr
+                                th #
+                                th Username
+                                th Email
+                                th Address
+                                th Type
+                        tbody(ng-init='ctrl.getUsers()')
+                            tr(ng-repeat="itr in users")
+                                td {{$index + 1}}
+                                td {{itr.username}}
+                                td {{itr.email}}
+                                td {{itr.address}}
+                                td {{itr.type}}
+
+    script(src='../js/lib/angular/angular.js')
+    script(src='../js/lib/angular/angular-route.js')
+    script(src='../js/app.js')
+    script(src='../js/services.js')
+    script(src='../js/controllers.js')
+    script(src='../js/filters.js')
+    script(src='../js/directives.js')
+    script(src='../js/lib/jquery/jquery-2.0.3.min.js')
+    script(src='../bootstrap/js/bootstrap.min.js')
