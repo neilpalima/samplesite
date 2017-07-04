@@ -41,14 +41,14 @@ block body
             .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
                 h2.sub-header List of products
                 .table-responsive
-                    table.table.table-striped(ng-controller='AppCtrl')
+                    table.table.table-striped(ng-controller='AppCtrl as ctrl')
                         thead
                             tr
                                 th #
                                 th Name
                                 th Price(in php)
                                 th Description
-                        tbody
+                        tbody(ng-init='ctrl.getProducts()')
                             tr(ng-repeat="itr in products")
                                 td {{$index + 1}}
                                 td {{itr.name}}
