@@ -3,6 +3,8 @@ var router = express.Router();
 
 var Users = require('../ORM/Users');
 
+//TODO: Encrypt and decrypt password
+
 router.post('/signin', (req, res) => {
     var userCredentials = req.body;
     Users.findOne({
