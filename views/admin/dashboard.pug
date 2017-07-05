@@ -29,35 +29,55 @@ block body
             .col-sm-3.col-md-2.sidebar
                 ul.nav.nav-sidebar
                     li.active(ng-show='showOverview')
-                        a(href='#')
+                        a(href='')
                             | Overview
                             span.sr-only (current)
                     li(ng-show='!showOverview')
-                        a(href='#' ng-click='ctrl.showOverview()') Overview
+                        a(href='' ng-click='ctrl.showOverview()') Overview
 
                     li.active(ng-show='showProducts')
-                        a(href='#')
+                        a(href='')
                             | Products
                             span.sr-only (current)
                     li(ng-show='!showProducts')
-                        a(href='#' ng-click='ctrl.showProducts()') Products
+                        a(href='' ng-click='ctrl.showProducts()') Products
 
                     li.active(ng-show='showUsers')
-                        a(href='#')
+                        a(href='')
                             | Users
                             span.sr-only (current)
                     li(ng-show='!showUsers')
-                        a(href='#' ng-click='ctrl.showUsers()') Users
+                        a(href='' ng-click='ctrl.showUsers()') Users
 
                     li.active(ng-show='showOrders')
-                        a(href='#')
-                            | Users
+                        a(href='')
+                            | Orders
                             span.sr-only (current)
                     li(ng-show='!showOrders')
-                        a(href='#' ng-click='ctrl.showOrders()') Orders
+                        a(href='' ng-click='ctrl.showOrders()') Orders
 
             .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main(ng-show='showOverview')
-                h2.sub-header Overview (TODO statistical content)
+                h1.page-header Dashboard
+                .row.placeholders
+                    .col-xs-6.col-sm-4.placeholder
+                        div.thumbnail.text-center(ng-init='ctrl.getUsersCount()')
+                            img.img-responsive(src='../images/blue.png', alt='Generic placeholder thumbnail')
+                            div.caption.count
+                                h2.count {{usersCount}}
+                            h4 Users Count
+                    .col-xs-6.col-sm-4.placeholder
+                        div.thumbnail.text-center(ng-init='ctrl.getProductsCount()')
+                            img.img-responsive(src='../images/blue.png', alt='Generic placeholder thumbnail')
+                            div.caption.count
+                                h2.count {{productsCount}}
+                            h4 Products Count
+                    .col-xs-6.col-sm-4.placeholder
+                        div.thumbnail.text-center(ng-init='ctrl.getOrdersCount()')
+                            img.img-responsive(src='../images/blue.png', alt='Generic placeholder thumbnail')
+                            div.caption.count
+                                h2.count {{ordersCount}}
+                            h4 Orders Count
+                h2.sub-header TODO: Some more statistics or report
 
 
             .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main(ng-show='showProducts')

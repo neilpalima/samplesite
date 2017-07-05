@@ -64,7 +64,7 @@ router.get('/get/:username', (req, res) => {
 });
 
 router.get('/countAll', (req, res) => {
-    Users.findAndCountAll().then(users => {
+    Users.findAndCountAll().then((users) => {
         res.json({count: users.count});
     });
 });

@@ -48,7 +48,7 @@ router.get('/get/:orderId', (req, res) => {
 });
 
 router.get('/countAll', (req, res) => {
-    Orders.findAndCountAll().then(orders => {
+    Orders.findAndCountAll().then((orders) => {
         res.json({count: orders.count});
     });
 });

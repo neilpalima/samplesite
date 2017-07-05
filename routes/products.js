@@ -49,4 +49,10 @@ router.get('/get*', (req, res) => {
     });
 });
 
+router.get('/countAll', (req, res) => {
+    Products.findAndCountAll().then((product) => {
+        res.json({count: product.count});
+    });
+});
+
 module.exports = router;

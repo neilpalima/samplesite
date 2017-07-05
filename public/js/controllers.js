@@ -16,11 +16,40 @@ function AppCtrl($scope, $http) {
       });
   }
 
+  this.getProductsCount = () => {
+    $http({method: 'GET', url: '/products/countAll'}).
+      success(function(data, status, headers, config) {
+        $scope.productsCount = data.count;
+      }).
+      error(function(data, status, headers, config) {
+        $scope.error = 'Error!'
+      });
+  }
+
   this.getUsers = () => {
-    console.log("natawag namann")
     $http({method: 'GET', url: '/users/getAll'}).
       success(function(data, status, headers, config) {
         $scope.users = data.users;
+      }).
+      error(function(data, status, headers, config) {
+        $scope.error = 'Error!'
+      });
+  }
+
+  this.getUsersCount = () => {
+    $http({method: 'GET', url: '/users/countAll'}).
+      success(function(data, status, headers, config) {
+        $scope.usersCount = data.count;
+      }).
+      error(function(data, status, headers, config) {
+        $scope.error = 'Error!'
+      });
+  }
+
+  this.getOrdersCount = () => {
+    $http({method: 'GET', url: '/orders/countAll'}).
+      success(function(data, status, headers, config) {
+        $scope.ordersCount = data.count;
       }).
       error(function(data, status, headers, config) {
         $scope.error = 'Error!'
