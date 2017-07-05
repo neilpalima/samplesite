@@ -7,7 +7,7 @@ Clone this repository, run `npm install` to grab the dependencies.
 
 Runs like a typical express app:
 
-    node app.js
+    node bin/www
       or
     npm start
 
